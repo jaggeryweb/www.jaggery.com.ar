@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaggery - Tortas y mucho más</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-primary: #1f8a65;       /* Verde esmeralda pastel del logo */
+            --color-primary-dark: #166348;  /* Tono oscuro para hover */
+            --color-secondary: #fdfbf7;     /* Fondo crema suave */
+            --color-accent: #C5A059;        /* Dorado pastel */
+            --color-text: #333333;          /* Texto principal */
+            --color-text-light: #666666;    /* Texto secundario */
+            --color-white: #FFFFFF;
+            --color-border: #E8DFD8;
+            
+            --font-logo: 'Alex Brush', cursive;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            
+            --transition: all 0.3s ease;
+            --shadow: 0 4px 15px rgba(0,0,0,0.05);
+            --radius: 12px;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background-color: var(--color-secondary);
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            color: var(--color-primary-dark);
+            font-weight: 700;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        ul {
+            list-style: none;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        .section-padding {
+            padding: 60px 0;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background-color: var(--color-primary);
+            bottom: -8px;
+            left: 25%;
+        }
+        .section-header p {
+            color: var(--color-text-light);
+            font-size: 1rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border-radius: 30px;
+            font-weight: 500;
+            border: 2px solid var(--color-primary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn:hover {
+            background-color: var(--color-primary-dark);
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+        
+        /* LOGO ESTILO ETIQUETA */
+        .logo-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+        .logo-title {
+            font-family: var(--font-logo);
+            font-size: 2.6rem;
+            color: var(--color-primary);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        .logo-subtitle {
+            font-family: var(--font-body);
+            font-size: 0.55rem;
+            font-weight: 600;
+            color: #222222;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: -4px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+        .nav-link {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-text);
+            white-space: nowrap;
+        }
+        .nav-link:hover {
+            color: var(--color-primary);
+        }
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(31, 138, 101, 0.15), rgba(31, 138, 101, 0.25)), 
+                        url('1000189797.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--color-text);
+            margin-top: 80px;
+            padding: 0 20px;
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(253, 251, 247, 0.92);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        .hero-logo-title {
+            font-family: var(--font-logo);
+            font-size: 4.8rem;
+            color: var(--color-primary);
+            line-height: 1;
+        }
+        .hero-logo-subtitle {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #222222;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            margin-bottom: 25px;
+            color: var(--color-text);
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+        .product-card {
+            background-color: var(--color-white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--color-border);
+            transition: transform 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-img {
+            height: 240px;
+            width: 100%;
+            object-fit: contain;     /* Muestra la imagen completa sin recortarla ni deformarla */
+            object-position: center;
+            background-color: #faf8f5; /* Fondo suave para rellenar los espacios vacíos con elegancia */
+        }
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+        .product-info h3 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+            color: var(--color-primary-dark);
+        }
+        .product-info p {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .bg-light {
+            background-color: var(--color-white);
+        }
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .info-item {
+            font-size: 0.95rem;
+            color: var(--color-text);
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            font-family: var(--font-body);
+            outline: none;
+        }
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        .footer {
+            background-color: #2c3e50;
+            color: var(--color-white);
+            padding: 30px 0;
+            text-align: center;
+        }
+        .footer p {
+            color: #d1d5db;
+            font-size: 0.85rem;
+        }
+        @media (min-width: 768px) {
+            .nav-menu {
+                gap: 25px;
+            }
+            .nav-link {
+                font-size: 0.95rem;
+            }
+            .contact-wrapper {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container navbar">
+            <a href="#inicio" class="logo-box">
+                <span class="logo-title">Jaggery</span>
+                <span class="logo-subtitle">• Tortas y mucho más •</span>
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                    <li><a href="#clasicas" class="nav-link">Tortas Clásicas</a></li>
+                    <li><a href="#tematicas" class="nav-link">Temáticas</a></li>
+                    <li><a href="#shots" class="nav-link">Shots & Mini</a></li>
+                    <li><a href="#desayunos" class="nav-link">Boxes</a></li>
+                    <li><a href="#cookies" class="nav-link">Cookies y Alfajores</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- PORTADA / HERO -->
+    <section id="inicio" class="hero">
+        <div class="container hero-content">
+            <div class="hero-logo-title">Jaggery</div>
+            <div class="hero-logo-subtitle">• Tortas y mucho más •</div>
+            <p>Pastelería artesanal elaborada con dedicación para endulzar cada momento especial de tu vida.</p>
+            <a href="https://wa.me/" class="btn" target="_blank">Hacer un Pedido por WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- TORTAS CLÁSICAS Y TARTAS -->
+    <section id="clasicas" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Tortas Clásicas y Tartas</h2>
+                <p>Sabores inolvidables para sorprender en tus eventos, reuniones familiares o con amigos</p>
+            </div>
+            <div class="product-grid">
+                <article class="product-card">
+                    <img src="1000189700.jpg" alt="Lemon Pie Tradicional" class="product-img">
+                    <div class="product-info">
+                        <h3>Lemon Pie Tradicional</h3>
+                        <p>Crocante base de masa sablée, suave crema de limón y un abundante merengue italiano.</p>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <img src="1000189701.jpg" alt="Marquise de Chocolate" class="product-img">
+                    <div class="product-info">
+                        <h3>Marquise de Chocolate</h3>
+                        <p>Base húmeda de puro chocolate coronada con copas de dulce de leche y merengue o crema.</p>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <img src="1000189702.jpg" alt="Rogel Artesanal" class="product-img">
+                    <div class="product-info">
+                        <h3>Rogel Artesanal</h3>
+                        <p>Capas finas y crocantes intercaladas con puro dulce de leche y cubierta suave de merengue.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- TORTAS DECORADAS TEMÁTICAS -->
+    <section id="tematicas" class="section-padding bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Tortas Decoradas Temáticas</h2>
+                <p>Tu idea, hecha torta. Celebrá tus momentos especiales con diseños personalizados. 
+Te mostramos algunos entre cientos.</p>
+            </div>
+            <div class="product-grid">
+                <article class="product-card">
+                    <img src="paris.jpg" alt="Temática París" class="product-img">
+                    <div class="product-info">
+                        <h3>Temática París</h3>
+                        <p>Diseños elegantes pintados a mano con la Torre Eiffel, flores y detalles románticos.</p>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <img src="Campeones del Mundo.jpg" alt="Campeones del Mundo" class="product-img">
+                    <div class="product-info">
+                        <h3>Campeones del Mundo</h3>
+                        <p>Homenajes personalizados con el capitán, detalles albicelestes y nuestra copa.</p>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <img src="1000189802.jpg" alt="Infantiles y Personajes" class="product-img">
+                    <div class="product-info">
+                        <h3>Infantiles y Personajes</h3>
+                        <p>Tus personajes favoritos y pasiones recreadas con modelados y detalles únicos.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHOTS Y MINI CAKES -->
+    <section id="shots" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Shots y Mini Cakes</h2>
+                <p>Porciones individuales llenas de sabor para tu mesa dulce o evento</p>
+            </div>
+            <div class="product-grid">
+                <article class="product-card">
+                    <img src="1000189900.jpg" alt="Cajas Surtidas Mini" class="product-img">
+                    <div class="product-info">
+                        <h3>Cajas Surtidas Mini</h3>
+                        <p>Combinación perfecta de mini lemon pie, cheese cake, tarta de frutilla, marquise, crumble, mousse, chocotorta.</p>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <img src="1000189901.jpg" alt="Shots Individuales" class="product-img">
+                    <div class="product-info">
+                        <h3>Shots Individuales</h3>
+                        <p>Vasitos dulces de cheese cake, marquise, chocotorta, lemon pie y mousse de Chocolate, mousee de limón, mousse de maracuyá y muchos más.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- DESAYUNOS Y BOXES ESPECIALES -->
+    <section id="desayunos" class="section-padding bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Desayunos y Boxes Especiales</h2>
+                <p>Sorprendé a quienes querés con una experiencia dulce inolvidable</p>
+            </div>
+            <div class="product-grid">
+                <article class="product-card">
+                    <img src="1000189300.jpg" alt="Box Especial" class="product-img">
+                    <div class="product-info">
+                        <h3>Box Especial / Regalos</h3>
+                        <p>Cajas de regalo con minipastelería, scons salados, jugos naturales y mucho más.</p>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <img src="1000189301.jpg" alt="Box Infantil" class="product-img">
+                    <div class="product-info">
+                        <h3>Box Infantil</h3>
+                        <p>Cajas con cupcakes, galletas rompecabezas, golosinas y sorpresas para los chicos.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- COOKIES Y ALFAJORES -->
+    <section id="cookies" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Cookies y Alfajores</h2>
+                <p>El toque dulce ideal para el café o para regalarte un gusto</p>
+            </div>
+            <div class="product-grid">
+                <article class="product-card">
+                    <img src="1000189191.jpg" alt="Alfajores Artesanales" class="product-img">
+                    <div class="product-info">
+                        <h3>Alfajores de Maicena</h3>
+                        <p>Suaves tapas que se deshacen en la boca, repletas de puro dulce de leche y coco rallado.</p>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <img src="1000189657.jpg" alt="Alfajores de Almendra" class="product-img">
+                    <div class="product-info">
+                        <h3>Alfajores de manteca</h3>
+                        <p>Suave tapa de manteca e impalpable y corazón de dulce de leche.</p>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <img src="1000189799.jpg" alt="Cookies XL" class="product-img">
+                    <div class="product-info">
+                        <h3>Cookies XL con Chips</h3>
+                        <p>Galletas rústicas y generosas cargadas de trozos de chocolate semi amargo.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section-padding bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contacto y Pedidos</h2>
+                <p>Escríbenos para coordinar tu próximo pedido artesanal</p>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>¿Tenés alguna consulta?</h3>
+                    <p>Tomamos pedidos con anticipación. Escribinos directamente por WhatsApp para coordinar sabores y diseños personalizados.</p>
+                    <div class="info-item">
+                        <strong>Ubicación:</strong> Martínez, San Isidro
+                    </div>
+                    <div class="info-item">
+                        <strong>Instagram:</strong> @jaggery_tortas
+                    </div>
+                </div>
+                <form class="contact-form" action="https://wa.me/5491149742154" method="GET" target="_blank">
+                    <div class="form-group">
+                        <input type="text" placeholder="Tu Nombre Completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Teléfono de Contacto" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Contanos qué producto querés o para cuándo es tu evento..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Enviar Consulta por WhatsApp</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Jaggery - Tortas y mucho más. Todos los derechos reservados.</p>
+            <p style="margin-top: 5px;">Seguinos en Instagram: <a href="https://instagram.com/jaggery_tortas" target="_blank" style="color: #63a39b; text-decoration: none;">@jaggery_tortas</a></p>
+        </div>
+    </footer>
+</body>
+</html>
